@@ -275,3 +275,9 @@ Exemplo:
       selector:
         matchLabels:
           app: nginx-pod
+
+
+## Volumes
+
+Recurso do kubernetes para armazenar arquivos e possuem ciclo de vida independente dos containeres, mas dependente dos Pods.
+
