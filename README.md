@@ -281,3 +281,26 @@ Exemplo:
 
 Recurso do kubernetes para armazenar arquivos e possuem ciclo de vida independente dos containeres, mas dependente dos Pods.
 
+Exemplo:
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-volume
+    spec:
+      containeres: 
+        - name: nginx-container
+          image: nginx:latest
+          volumeMounts:
+            - mountPath: /volume-dentro-do-container
+              name: primeiro-volume
+        - name: jenkins-container
+          image: jenkins:alpine
+          volumeMounts:
+            - mountPath: /volume-dentro-do-container
+              name: primeiro-volume      
+      volumes:
+        name: primeiro-volume    
+        hostPath:
+          path: /C/Users/Daniel/Desktop/primeiro-volume
+          type: Directory
