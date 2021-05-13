@@ -337,3 +337,8 @@ Exmplo Linux:
 ## Persistent Volumes
 
 [Documentação oficial](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+
+## Storage Classes
+
+- Com ele nós vamos conseguir criar Volumes, Persistent Volumes, no caso, e discos dinamicamente.
+
