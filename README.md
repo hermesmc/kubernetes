@@ -333,3 +333,7 @@ Exmplo Linux:
           hostPath:
             path: /home/segundo-volume
             type: DirectoryOrCreate
+            
+## Persistent Volumes
+
+[Documentação oficial](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
