@@ -54,6 +54,9 @@ Iniciando o minikube
 - Melhorando o histórico de versões descrevendo a ação feita: kubectl annotate deployment "nome-deployment" kubernetes.io/change-cause="Descrição que queira colocar"
 - Voltando versão do histórico: kubectl undo deployment "nome-do-deployment" --to-revision-"número-da-revisão"
 - Voltando um Deployment para uma revisão específica: kubectl rollout undo deployment <nome do deployment> --to-revision=<versão a ser retornada>
+- Acessando o volume nginx-container: kubectl exec -it pod-volume --container nginx-container
+- Acessando a pasta que foi criada: cd volume-dentro-do-container
+- Criando o arquivo "arquivo.txt": touch arquivo.txt
 
 ## Criando pods de maneira declarativa
 
@@ -304,3 +307,29 @@ Exemplo:
         hostPath:
           path: /C/Users/Daniel/Desktop/primeiro-volume
           type: Directory
+          
+- O exemplo acima funciona quando o diretório já foi criado. Se não foi, em type, utilize DirectoryOrCreate
+
+Exmplo Linux:
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-volume
+    spec:
+      containers: 
+        - name: nginx-container
+          image: nginx:latest
+          volumeMounts:
+            - mountPath: /volume-dentro-do-container
+              name: segundo-volume
+        - name: jenkins
+          image: jenkins/jenkins:alpine 
+          volumeMounts:
+            - mountPath: /volume-dentro-do-container
+              name: segundo-volume      
+      volumes:
+        - name: segundo-volume    
+          hostPath:
+            path: /home/segundo-volume
+            type: DirectoryOrCreate
