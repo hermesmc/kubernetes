@@ -17,5 +17,5 @@ spec:
   volumes:
     - name: segundo-volume    
       hostPath:
-        path: /home/primeiro-volume
+        path: /home/segundo-volume
         type: DirectoryOrCreate
