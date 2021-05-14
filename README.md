@@ -360,39 +360,39 @@ Quando um pod é criado dentro de um StatefulSet, também são criados o Persist
 
 Exemplo: 
 
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: sistema-noticias-statefulset
-spec:
-  replicas: 1
-  template:
+    apiVersion: apps/v1
+    kind: StatefulSet
     metadata:
-      labels:
-        app: sistema-noticias
-      name: sistema-noticias
+      name: sistema-noticias-statefulset
     spec:
-      containers:
-        - name: sistema-noticias-container
-          image: aluracursos/sistema-noticias:1
-          ports:
-            - containerPort: 80
-          envFrom:
-            - configMapRef:
-                name: sistema-configmap
-          volumeMounts:
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app: sistema-noticias
+          name: sistema-noticias
+        spec:
+          containers:
+            - name: sistema-noticias-container
+              image: aluracursos/sistema-noticias:1
+              ports:
+                - containerPort: 80
+              envFrom:
+                - configMapRef:
+                    name: sistema-configmap
+              volumeMounts:
+                - name: imagens
+                  mountPath: /var/www/html/uploads
+                - name: sessao
+                  mountPath: /tmp
+          volumes:
             - name: imagens
-              mountPath: /var/www/html/uploads
+              persistentVolumeClaim:
+                claimName: imagens-pvc
             - name: sessao
-              mountPath: /tmp
-      volumes:
-        - name: imagens
-          persistentVolumeClaim:
-            claimName: imagens-pvc
-        - name: sessao
-          persistentVolumeClaim:
-            claimName: sessao-pvc
-  selector:
-    matchLabels:
-      app: sistema-noticias
-  serviceName: svc-sistema-noticias
+              persistentVolumeClaim:
+                claimName: sessao-pvc
+      selector:
+        matchLabels:
+          app: sistema-noticias
+      serviceName: svc-sistema-noticias
