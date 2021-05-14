@@ -342,3 +342,14 @@ Exmplo Linux:
 
 - Com ele nós vamos conseguir criar Volumes, Persistent Volumes, no caso, e discos dinamicamente.
 
+Exemplo:
+
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+        name: slow
+    provisioner: kubernetes.io/gce-pd
+    parameters:
+        type: pd-standard
+        fstype: ext4
+        replication-type: none
