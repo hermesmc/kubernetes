@@ -353,3 +353,46 @@ Exemplo:
         type: pd-standard
         fstype: ext4
         replication-type: none
+
+## StatefulSets
+
+Quando um pod é criado dentro de um StatefulSet, também são criados o Persistent Volue e Persistent Volume Claim e, quando um pod falhar, um novo pod é criado assumindo a mesma identidade do pod que falhou podendo acessar as mesmas informações que já vinham sendo acessadas.
+
+Exemplo: 
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sistema-noticias-statefulset
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sistema-noticias
+      name: sistema-noticias
+    spec:
+      containers:
+        - name: sistema-noticias-container
+          image: aluracursos/sistema-noticias:1
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: sistema-configmap
+          volumeMounts:
+            - name: imagens
+              mountPath: /var/www/html/uploads
+            - name: sessao
+              mountPath: /tmp
+      volumes:
+        - name: imagens
+          persistentVolumeClaim:
+            claimName: imagens-pvc
+        - name: sessao
+          persistentVolumeClaim:
+            claimName: sessao-pvc
+  selector:
+    matchLabels:
+      app: sistema-noticias
+  serviceName: svc-sistema-noticias
