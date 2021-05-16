@@ -396,3 +396,5 @@ Exemplo:
         matchLabels:
           app: sistema-noticias
       serviceName: svc-sistema-noticias
+
+- No exemplo acima o StatefulSet vai recriar os pods de sessão e de imagens. Desta forma, para as pessoas que estão acessando a aplicação, caso o pod venha a dar problemas, vão continuar com sua sessão e as imagens inseridas vão continuar a disposiç
