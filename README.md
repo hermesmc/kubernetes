@@ -404,3 +404,17 @@ Exemplo:
 Tem como função tornar visível ao Kubernetes que uma aplicação não está se comportando da maneira esperada. Assim o Kubernetes pode tormar uma atitude como eliminar o pod e criar automaticamente outro.
 
 ## Liveness Probes
+ 
+ O Liveness Probe nada mais do que uma prova de vida que a aplicação dentro de um container de um Pod está funcionando. 
+ 
+ Exemplo:
+ 
+           livenessProbe:
+            httpGet:
+              path: /
+              port: 80     
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 20  
+            
+- O exemplo acima foi extraido do porta-noticias-deployment.yaml abaixo da definicção de envFrom.            
