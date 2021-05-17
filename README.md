@@ -431,3 +431,6 @@ O Readiness Probe informa quando um Pod está pronto para receber requisições.
             failureThreshold: 5
             initialDelaySeconds: 3  
             
+## Startup Probes
+
+Este proble não foi visto no curso, mas tem sua definição no link: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes
