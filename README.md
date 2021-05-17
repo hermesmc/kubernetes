@@ -417,4 +417,17 @@ Tem como função tornar visível ao Kubernetes que uma aplicação não está s
             failureThreshold: 3
             initialDelaySeconds: 20  
             
-- O exemplo acima foi extraido do porta-noticias-deployment.yaml abaixo da definicção de envFrom.            
+- O exemplo acima foi extraido do porta-noticias-deployment.yaml abaixo da definição de envFrom.            
+
+## Readiness Probes
+
+O Readiness Probe informa quando um Pod está pronto para receber requisições. Sua definição é semelhante a do Liveness Probe e deve ser colocado no código abaixo deste: 
+
+           readinessProbe:
+            httpGet:
+              path: /
+              port: 80     
+            periodSeconds: 10
+            failureThreshold: 5
+            initialDelaySeconds: 3  
+            
