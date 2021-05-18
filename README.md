@@ -29,6 +29,8 @@ Instalação de um drive virtual: no Linux é necessário fazer a instalação d
 Iniciando o minikube
 
     minikube start --vm-driver=virtualbox
+    
+[Página do minikube](kubernetes.io/docs/tutorials/hello-minikube)
 
 * ATENÇÃO: utilizando o Linux este comando deve ser executado sempre antes de utilizar o Kubernetes
 
@@ -434,3 +436,45 @@ O Readiness Probe informa quando um Pod está pronto para receber requisições.
 ## Startup Probes
 
 Este proble não foi visto no curso, mas tem sua definição no link: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes
+
+
+## Horizontal Pod Autoescaler
+
+- É um recurso que visa manter a utilização de memória e/ou cpu dentro de padrões pré estabelecidos criando novos pods e, quando o consumo cair, deletando os mesmos.
+
+No arquivo de deployment que será monitorado, inclua o código abaixo em containeres:
+
+          resources:
+            requests:
+              cpu: 10m    
+Exemplo:
+
+    apiVersion: autoscaling/v2beta2
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: portal-noticias-hpa
+    spec:
+      scaleTargetRef:
+        apiVersion: apps?v1
+        kind: Deployment
+        name: portal-noticias-deployment
+      minReplicas: 1
+      maxReplicas: 10
+      metrics:
+        - type: Resource
+          resource:
+            name: cpu
+            target:
+              type: Utilization
+              averageUtilization: 50
+          
+
+## Servidor de métricas
+
+[Site do kubernetes no git sobre servidor de métricas](https://github.com/kubernetes-sigs/metrics-server)
+
+### No Linux: 
+
+Para verificar as extensões permitidas: minikube addons list
+Para habilitar alguma extensão: minikube addons enable metrics-server
+
