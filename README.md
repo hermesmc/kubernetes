@@ -438,6 +438,35 @@ Este proble não foi visto no curso, mas tem sua definição no link: https://ku
 
 ## Horizontal Pod Autoescaler
 
+- É um recurso que visa manter a utilização de memória e/ou cpu dentro de padrões pré estabelecidos criando novos pods e, quando o consumo cair, deletando os mesmos.
+
+No arquivo de deployment que será monitorado, inclua o código abaixo em containeres:
+
+          resources:
+            requests:
+              cpu: 10m    
+Exemplo:
+
+    apiVersion: autoscaling/v2beta2
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: portal-noticias-hpa
+    spec:
+      scaleTargetRef:
+        apiVersion: apps?v1
+        kind: Deployment
+        name: portal-noticias-deployment
+      minReplicas: 1
+      maxReplicas: 10
+      metrics:
+        - type: Resource
+          resource:
+            name: cpu
+            target:
+              type: Utilization
+              averageUtilization: 50
+          
+
 ## Servidor de métricas
 
 [Site do kubernetes no git sobre servidor de métricas](https://github.com/kubernetes-sigs/metrics-server)
