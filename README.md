@@ -438,3 +438,6 @@ Este proble não foi visto no curso, mas tem sua definição no link: https://ku
 
 ## Horizontal Pod Autoescaler
 
+## Servidor de métricas
+
+[Site do kubernetes no git sobre servidor de métricas](https://github.com/kubernetes-sigs/metrics-server)
