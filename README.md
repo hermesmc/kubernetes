@@ -59,6 +59,7 @@ Iniciando o minikube
 - Acessando o volume nginx-container: kubectl exec -it pod-volume --container nginx-container
 - Acessando a pasta que foi criada: cd volume-dentro-do-container
 - Criando o arquivo "arquivo.txt": touch arquivo.txt
+- Visualizando o IP local kubectl get nodes -o wide
 
 ## Criando pods de maneira declarativa
 
@@ -477,4 +478,13 @@ Exemplo:
 
 Para verificar as extensões permitidas: minikube addons list
 Para habilitar alguma extensão: minikube addons enable metrics-server
+
+- Arquivo de stress: 
+
+      #!/bin/bash
+      for i in {1..10000}; do
+        curl localhost:30000
+        sleep $1
+      done
+- Executando arquivo de stress: bash stress.sh 0.001 > out.txt
 
