@@ -29,6 +29,8 @@ Instalação de um drive virtual: no Linux é necessário fazer a instalação d
 Iniciando o minikube
 
     minikube start --vm-driver=virtualbox
+    
+[Página do minikube](kubernetes.io/docs/tutorials/hello-minikube)
 
 * ATENÇÃO: utilizando o Linux este comando deve ser executado sempre antes de utilizar o Kubernetes
 
@@ -470,3 +472,9 @@ Exemplo:
 ## Servidor de métricas
 
 [Site do kubernetes no git sobre servidor de métricas](https://github.com/kubernetes-sigs/metrics-server)
+
+### No Linux: 
+
+Para verificar as extensões permitidas: minikube addons list
+Para habilitar alguma extensão: minikube addons enable metrics-server
+
