@@ -486,5 +486,6 @@ Para habilitar alguma extensão: minikube addons enable metrics-server
         curl localhost:30000
         sleep $1
       done
+      
 - Executando arquivo de stress: bash stress.sh 0.001 > out.txt
 
