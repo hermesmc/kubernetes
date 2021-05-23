@@ -37,29 +37,29 @@ Iniciando o minikube
 ## Comandos 
 
 - Vendo os pods já criados: <code>kubectl get pods</code>
-      - kubectl get pods -o wide (com mais detalhes)
-- Criando um pod: kubectl run nginx-pod --image=nginx:latest
-- Visualizando a descrição de um pod:kubectl describe pod nginx-pod
-- Editando um pod: kubectl edit pod nginx-pod
-- Deletando um pod: kubectl delete pod nginx-pod (caso pod não declarativo)
-                    kubectl delete -f .\primeiro-pod.yaml (caso pod declarativo) 
+      - <code>kubectl get pods -o wide</code> (com mais detalhes)
+- Criando um pod: <code>kubectl run nginx-pod --image=nginx:latest</code>
+- Visualizando a descrição de um pod: <code>kubectl describe pod nginx-pod</code>
+- Editando um pod: <code>kubectl edit pod nginx-pod</code>
+- Deletando um pod: <code>kubectl delete pod nginx-pod</code> (caso pod não declarativo)
+                    <code>kubectl delete -f .\primeiro-pod.yaml</code> (caso pod declarativo) 
 - Enviando requisição de um pod para outro: 
-     - kubectl exec -it pod-1 -- bash
-     - curl "ip do serviço:porta"
-- Vendo nodes criados: kubectl get nodes -o wide  
+     - <code>kubectl exec -it pod-1 -- bash</code>
+     - <code>curl "ip do serviço:porta"</code>
+- Vendo nodes criados: <code>kubectl get nodes -o wide</code>  
 - Acessando o banco de dados:
-   - kubectl exec -it db-noticias -- bash
-   - mysql -u root -p
-- Criando um pod, svc, etc... via arquivo yaml: kubectl apply -f ".\nome do arquivo.yaml" 
-- Vendo o histórico de versões dos Pods: kubectl roolout history deployment "nome-do-deployment"
-- Sobreescrevendo arquivo de deployment com alterações: kubectl apply -f .\"nome do arquivo" --record
-- Melhorando o histórico de versões descrevendo a ação feita: kubectl annotate deployment "nome-deployment" kubernetes.io/change-cause="Descrição que queira colocar"
-- Voltando versão do histórico: kubectl undo deployment "nome-do-deployment" --to-revision-"número-da-revisão"
-- Voltando um Deployment para uma revisão específica: kubectl rollout undo deployment <nome do deployment> --to-revision=<versão a ser retornada>
-- Acessando o volume nginx-container: kubectl exec -it pod-volume --container nginx-container
-- Acessando a pasta que foi criada: cd volume-dentro-do-container
-- Criando o arquivo "arquivo.txt": touch arquivo.txt
-- Visualizando o IP local kubectl get nodes -o wide
+   - <code>kubectl exec -it db-noticias -- bash</code>
+   - <code>mysql -u root -p</code>
+- Criando um pod, svc, etc... via arquivo yaml: <code>kubectl apply -f ".\nome do arquivo.yaml"</code> 
+- Vendo o histórico de versões dos Pods: <code>kubectl roolout history deployment "nome-do-deployment"</code>
+- Sobreescrevendo arquivo de deployment com alterações: <code>kubectl apply -f .\"nome do arquivo" --record</code>
+- Melhorando o histórico de versões descrevendo a ação feita: <code>kubectl annotate deployment "nome-deployment" kubernetes.io/change-cause="Descrição que queira colocar"</code>
+- Voltando versão do histórico: <code>kubectl undo deployment "nome-do-deployment" --to-revision-"número-da-revisão"</code>
+- Voltando um Deployment para uma revisão específica: <code>kubectl rollout undo deployment <nome do deployment> --to-revision=<versão a ser retornada></code>
+- Acessando o volume nginx-container: <code>kubectl exec -it pod-volume --container nginx-container</code>
+- Acessando a pasta que foi criada: <code>cd volume-dentro-do-container</code>
+- Criando o arquivo "arquivo.txt": <code>touch arquivo.txt</code>
+- Visualizando o IP local <code>kubectl get nodes -o wide</code>
 
 ## Criando pods de maneira declarativa
 
