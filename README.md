@@ -36,7 +36,7 @@ Iniciando o minikube
 
 ## Comandos 
 
-- Vendo os pods já criados: kubectl get pods
+- Vendo os pods já criados: <code>kubectl get pods</code>
       - kubectl get pods -o wide (com mais detalhes)
 - Criando um pod: kubectl run nginx-pod --image=nginx:latest
 - Visualizando a descrição de um pod:kubectl describe pod nginx-pod
